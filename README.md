@@ -12,4 +12,4 @@ All colours are CSS variables at the top of `styles.css`.
 
 ## Hosting
 Hosted on GitHub Pages from the `main` branch of this repository. Pushing to `main` republishes the site.
-The privacy policy link points to the existing page at dontlookdown-6ec26.web.app.
+The privacy policy is `privacy.html`.

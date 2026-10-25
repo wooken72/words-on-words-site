@@ -225,3 +225,20 @@ section { padding: 88px 20px; max-width: 1140px; margin: 0 auto; }
   html { scroll-behavior: auto; }
   .appstore { transition: none; }
 }
+
+/* Privacy policy page */
+.policy {
+  max-width: 760px; margin: 56px auto 88px; padding: 48px 44px;
+  background: var(--surface); color: var(--ink);
+  border-radius: 24px; box-shadow: var(--shadow);
+}
+.policy h1 { font-size: clamp(1.9rem, 4vw, 2.5rem); }
+.policy h2 { text-align: left; font-size: 1.35rem; margin-top: 1.8em; }
+.policy p, .policy li { color: var(--ink-soft); font-size: 1.05rem; }
+.policy .policy-lede { font-size: 1.15rem; color: var(--ink); }
+.policy ul { padding-left: 1.2em; }
+.policy li { margin-bottom: .4em; }
+.policy a { color: var(--red-dark); font-weight: 600; }
+@media (max-width: 640px) {
+  .policy { margin: 24px 16px 56px; padding: 32px 22px; }
+}
