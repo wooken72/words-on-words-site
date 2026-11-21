@@ -1,0 +1,450 @@
+/* Corked's website: the app's storybook sea-chart look (parchment and sepia ink, sealing-wax red for the main
+   actions, Germania One for headings and Patrick Hand for everything else; colours match app/Assets/UI/Main.uss). */
+
+@font-face {
+  font-family: "Germania One";
+  src: url("fonts/GermaniaOne-Regular.ttf") format("truetype");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Patrick Hand";
+  src: url("fonts/PatrickHand-Regular.ttf") format("truetype");
+  font-display: swap;
+}
+
+:root {
+  --parchment: rgb(236, 217, 176);
+  --paper: rgb(245, 231, 198);
+  --paper-light: rgb(250, 241, 218);
+  --ink: rgb(61, 40, 23);
+  --ink-soft: rgb(107, 79, 53);
+  --ink-faint: rgb(160, 134, 102);
+  --rule: rgb(214, 191, 143);
+  --wax: rgb(168, 50, 42);
+  --wax-dark: rgb(132, 36, 30);
+  --on-wax: rgb(251, 239, 211);
+  --doubloon: rgb(201, 154, 59);
+  --river: rgb(79, 127, 154);
+  --sea: rgb(170, 200, 199);
+  --heading: "Germania One", Georgia, serif;
+  --hand: "Patrick Hand", "Comic Sans MS", system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--hand);
+  font-size: 1.25rem;
+  line-height: 1.5;
+  color: var(--ink);
+  background: var(--parchment) url("images/parchment.jpg") repeat;
+  background-size: 512px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: var(--river);
+}
+
+h1, h2, h3 {
+  font-family: var(--heading);
+  font-weight: normal;
+  line-height: 1.1;
+  margin: 0 0 0.5em;
+}
+
+h2 {
+  font-size: clamp(2.2rem, 6vw, 3.2rem);
+}
+
+h3 {
+  font-size: 1.7rem;
+}
+
+p {
+  margin: 0 0 1em;
+}
+
+.wrap {
+  width: min(1080px, 100% - 32px);
+  margin: 0 auto;
+}
+
+/* The bar along the top: the icon, name and links. */
+.top {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(245, 231, 198, 0.94);
+  border-bottom: 2px solid var(--ink);
+}
+
+.top .wrap {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-height: 64px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--ink);
+  text-decoration: none;
+  font-family: var(--heading);
+  font-size: 1.8rem;
+}
+
+.brand img {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  border: 2px solid var(--ink);
+}
+
+.top nav {
+  margin-left: auto;
+  display: flex;
+  gap: 20px;
+}
+
+.top nav a {
+  color: var(--ink-soft);
+  text-decoration: none;
+}
+
+.top nav a:hover {
+  color: var(--wax);
+}
+
+/* The first screen: the logo, the promise, and the App Store button. */
+.hero {
+  padding: 40px 0 72px;
+  text-align: center;
+}
+
+.hero .logo {
+  width: min(520px, 100%);
+  margin: 0 auto 8px;
+}
+
+.hero .lead {
+  font-size: clamp(1.4rem, 3.4vw, 1.8rem);
+  max-width: 34ch;
+  margin: 0 auto 28px;
+  color: var(--ink-soft);
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 30px;
+  font-family: var(--heading);
+  font-size: 1.6rem;
+  color: var(--on-wax);
+  background: var(--wax);
+  border: 2px solid var(--wax-dark);
+  border-radius: 999px;
+  text-decoration: none;
+  box-shadow: 0 4px 0 var(--wax-dark);
+}
+
+.button svg {
+  width: 26px;
+  height: 26px;
+  fill: currentColor;
+}
+
+.button--soon {
+  cursor: default;
+}
+
+.note {
+  margin-top: 14px;
+  font-size: 1.05rem;
+  color: var(--ink-faint);
+}
+
+/* A wave of sea between sections. */
+.waves {
+  height: 36px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='36' viewBox='0 0 120 36'%3E%3Cpath d='M0 22 Q15 8 30 22 T60 22 T90 22 T120 22 V36 H0Z' fill='%23aac8c7'/%3E%3Cpath d='M0 22 Q15 8 30 22 T60 22 T90 22 T120 22' fill='none' stroke='%233d2817' stroke-width='2'/%3E%3C/svg%3E") repeat-x bottom;
+}
+
+.sea {
+  background: var(--sea);
+  border-bottom: 2px solid var(--ink);
+  padding: 56px 0 72px;
+}
+
+/* How it works: three steps along a dashed red route. */
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 32px;
+  position: relative;
+}
+
+.steps::before {
+  content: "";
+  position: absolute;
+  top: 60px;
+  left: 16%;
+  right: 16%;
+  border-top: 3px dashed var(--wax);
+  z-index: 0;
+}
+
+.step {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+.step img {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 14px;
+}
+
+.step p {
+  color: var(--ink-soft);
+}
+
+.section {
+  padding: 72px 0;
+}
+
+.section-intro {
+  max-width: 46ch;
+  color: var(--ink-soft);
+}
+
+/* Screens from the app, in phones that lean like snapshots. */
+.screens {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+  margin-top: 40px;
+}
+
+.phone {
+  min-width: 0; /* let the screenshot shrink to its column */
+  margin: 0;
+  text-align: center;
+}
+
+.phone img {
+  border: 3px solid var(--ink);
+  border-radius: 28px;
+  background: var(--paper);
+  box-shadow: 0 10px 24px rgba(61, 40, 23, 0.25);
+}
+
+.phone:nth-child(odd) img {
+  transform: rotate(-2deg);
+}
+
+.phone:nth-child(even) img {
+  transform: rotate(2deg);
+}
+
+.phone figcaption {
+  margin-top: 16px;
+  color: var(--ink-soft);
+}
+
+/* What's in it: cards like the app's. */
+.features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 36px;
+}
+
+.card {
+  padding: 24px 24px 12px;
+  background: var(--paper-light);
+  border: 1px solid rgba(61, 40, 23, 0.15);
+  border-radius: 20px;
+}
+
+.card h3 {
+  font-size: 1.5rem;
+}
+
+.card p {
+  color: var(--ink-soft);
+}
+
+/* Badges: a row of medals. */
+.medals {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 18px;
+  margin: 32px 0 8px;
+}
+
+.medals img {
+  width: 92px;
+  height: 92px;
+  filter: drop-shadow(0 3px 4px rgba(61, 40, 23, 0.3));
+}
+
+.centre {
+  text-align: center;
+}
+
+.centre .section-intro {
+  margin: 0 auto;
+}
+
+/* The closing call, on a paper card with a wax seal. */
+.closing {
+  text-align: center;
+  padding: 48px 24px 40px;
+  background: var(--paper);
+  border: 2px solid var(--ink);
+  border-radius: 24px;
+}
+
+.closing img {
+  width: 120px;
+  margin: 0 auto 16px;
+  border-radius: 26px;
+  border: 2px solid var(--ink);
+}
+
+footer {
+  margin-top: 72px;
+  padding: 28px 0 40px;
+  border-top: 2px solid var(--ink);
+  background: var(--paper);
+  color: var(--ink-soft);
+  font-size: 1.05rem;
+}
+
+footer .wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 28px;
+  align-items: center;
+}
+
+footer nav {
+  display: flex;
+  gap: 20px;
+  margin-left: auto;
+}
+
+footer a {
+  color: var(--ink-soft);
+}
+
+/* The privacy policy: a long letter on paper. */
+.letter {
+  margin: 48px auto 0;
+  max-width: 760px;
+  padding: clamp(24px, 5vw, 56px);
+  background: var(--paper-light);
+  border: 2px solid var(--ink);
+  border-radius: 20px;
+  box-shadow: 0 10px 24px rgba(61, 40, 23, 0.18);
+}
+
+.letter h1 {
+  font-size: clamp(2.4rem, 7vw, 3.4rem);
+}
+
+.letter h2 {
+  font-size: 1.9rem;
+  margin-top: 1.6em;
+  padding-top: 0.4em;
+  border-top: 1px dashed var(--rule);
+}
+
+.letter ul {
+  padding-left: 1.2em;
+  margin: 0 0 1em;
+}
+
+.letter li {
+  margin-bottom: 0.4em;
+}
+
+.letter .updated {
+  color: var(--ink-faint);
+}
+
+.letter strong {
+  font-family: var(--heading);
+  font-weight: normal;
+  color: var(--ink);
+}
+
+.summary {
+  padding: 16px 20px 4px;
+  background: var(--paper);
+  border-radius: 14px;
+  border-left: 6px solid var(--wax);
+  margin-bottom: 1.4em;
+}
+
+@media (max-width: 860px) {
+  .screens {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .features {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  body {
+    font-size: 1.15rem;
+  }
+
+  .top nav a:not(:last-child) {
+    display: none;
+  }
+
+  .steps,
+  .features {
+    grid-template-columns: 1fr;
+  }
+
+  .steps::before {
+    display: none;
+  }
+
+  .button {
+    padding: 12px 22px;
+    font-size: 1.3rem;
+  }
+
+  .screens {
+    gap: 18px;
+  }
+
+  footer nav {
+    margin-left: 0;
+  }
+}
