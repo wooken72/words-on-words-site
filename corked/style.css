@@ -170,8 +170,14 @@ p {
   fill: currentColor;
 }
 
-.button--soon {
-  cursor: default;
+.button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 0 var(--wax-dark);
+}
+
+.button:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 var(--wax-dark);
 }
 
 .note {
